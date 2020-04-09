@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/react_app'
+      - '/react_app/node_modules'
+    command: npm start
+    # open stdin for server to compile and start (react bug)
+    stdin_open: true
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=development
